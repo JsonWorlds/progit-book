@@ -1,0 +1,678 @@
+<!DOCTYPE html> <html lang="en" dir="auto"> <head><meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=no"> <meta name="description" content="Git Basics If you can read only one chapter to get going with Git, this is it. This chapter covers every basic command you need to do the vast majo..."> <meta name="revised" content="5633879a29af8bd1d6c0f4b1a149552dfc8b37c3"> <meta name="author" content="Multiple Universes"> <meta name="generator" content="jekyll-rtd-theme v2.0.10"><meta name="theme-color" content="#2980b9"> <title>Git Basics # · eQuantum</title> <meta name="twitter:title" content="Git Basics # · eQuantum"> <meta name="twitter:description" content="Git Basics If you can read only one chapter to get going with Git, this is it. This chapter covers every basic command you need to do the vast majo..."> <meta name="twitter:card" content="summary"> <meta name="twitter:site" content="@Multiple Universes"> <meta name="twitter:url" content="/progit-book/02-git-basics.html"> <meta name="twitter:creator" content="@jekyll-rtd-theme v2.0.10"> <meta property="og:title" content="Git Basics # · eQuantum"> <meta property="og:description" content="Git Basics If you can read only one chapter to get going with Git, this is it. This chapter covers every basic command you need to do the vast majo..."> <meta property="og:locale" content="en"> <meta property="og:url" content="/progit-book/02-git-basics.html"> <meta property="og:type" content="article"> <meta property="article:author" content="Multiple Universes"> <meta property="article:published_time" content="2015-04-30T09:12:52-05:00"> <meta property="article:modified_time" content="2024-05-09T04:40:54-05:00"> <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "Article", "mainEntityOfPage": { "@type": "WebPage", "@id": "/progit-book/02-git-basics.html" }, "headline": "Git Basics # · eQuantum", "image": [], "author": { "@type": "Person", "name": "Multiple Universes" }, "datePublished": "2015-04-30T09:12:52-05:00", "dateModified": "2024-05-09T04:40:54-05:00", "publisher": { "@type": "Organization", "name": "Multiple Universes", "logo": { "@type": "ImageObject", "url": "https://avatars.githubusercontent.com/u/11951714?v=4" } }, "description": "Git Basics If you can read only one chapter to get going with Git, this is it. This chapter covers every basic command you need to do the vast majo..." } </script> <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="prev" href="/progit-book/01-introduction.html"><link rel="next" href="/progit-book/03-git-branching.html"><link rel="canonical" href="/progit-book/02-git-basics.html"><link rel="icon" type="image/svg+xml" href="/progit-book/assets/images/favicon.svg"><link rel="icon" type="image/png" href="/progit-book/assets/images/favicon-16x16.png" sizes="16x16"> <link rel="icon" type="image/png" href="/progit-book/assets/images/favicon-32x32.png" sizes="32x32"> <link rel="icon" type="image/png" href="/progit-book/assets/images/favicon-96x96.png" sizes="96x96"><link rel="mask-icon" href="/progit-book/assets/images/favicon.svg" color="#2980b9"><link rel="apple-touch-icon" href="/progit-book/assets/images/apple-touch-icon-300x300.jpg"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rundocs/jekyll-rtd-theme@2.0.10/assets/css/theme.min.css"><script> window.ui = { title: "eQuantum", baseurl: "/progit-book", i18n: { search_results: "Search Results", search_results_found: "Search finished, found # page(s) matching the search query.", search_results_not_found: "Your search did not match any documents, please make sure that all characters are spelled correctly!" } }; </script> </head> <body class="container"><div class="sidebar-wrap overflow-hidden"> <div class="sidebar height-full overflow-y-scroll overflow-x-hidden"> <div class="header d-flex flex-column p-3 text-center"> <div class="title pb-1"> <a class="h4 no-underline py-1 px-2 rounded-1" href="https://eq19.com/" title="Mapping the quantum way across prime identity"> <i class="fa fa-home"></i> eQuantum </a> </div> <span class="version"></span> <form class="search pt-2" action="/progit-book/search.html" method="get" autocomplete="off"> <input class="form-control input-block input-sm" type="text" name="q" placeholder="Search docs..."> </form> </div> <div class="toctree py-2" data-spy="affix" role="navigation" aria-label="main navigation"> <ul> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/01-introduction.html">Getting Started #</a> </li> <li class="toc level-1 current" data-sort="" data-level="1"> <a class="d-flex flex-items-baseline current" href="/progit-book/02-git-basics.html">Git Basics #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/03-git-branching.html">Git Branching #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/04-git-server.html">Git on the Server #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/05-distributed-git.html">Distributed Git #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/06-git-tools.html">Git Tools #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/07-customizing-git.html">Customizing Git #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/08-git-and-other-scms.html">Git and Other Systems #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/09-git-internals.html">Git Internals #</a> </li> <li class="toc level-1 " data-sort="" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0-K_n-Wiki.html">Тестовая-страница-K_n-Wiki.md</a> </li> <li class="toc level-1 " data-sort="2" data-level="1"> <a class="d-flex flex-items-baseline " href="/progit-book/file01.html">zones. Addition Zones (1-18)</a> </li> </ul> <a class="caption d-block text-uppercase no-wrap px-2 py-0" href="/progit-book/exponentiation/"> 19. Exponentiation Zones (31-36) </a><ul> </ul> <a class="caption d-block text-uppercase no-wrap px-2 py-0" href="/progit-book/identition/"> 19. Identition Zones (37-102) </a><ul> </ul> </div> </div> </div> <div class="content-wrap"> <div class="header d-flex flex-justify-between p-2 hide-lg hide-xl" aria-label="top navigation"> <button id="toggle" aria-label="Toggle menu" class="btn-octicon p-2 m-0 text-white" type="button"> <i class="fa fa-bars"></i> </button> <div class="title flex-1 d-flex flex-justify-center"> <a class="h4 no-underline py-1 px-2 rounded-1" href="/progit-book/">eQuantum</a> </div> </div> <div class="content p-3 p-sm-5"> <div class="navigation-top d-flex flex-justify-between"> <ul class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation"> <li class="breadcrumb-item"> <a class="no-underline" href="https://eq19.com/" title="Home"> <i class="fa fa-home"></i> </a> </li><li class="breadcrumb-item"> <a href="/">Multiple Universes</a> </li><li class="breadcrumb-item"> <a href="/progit-book/">Progit-book</a> </li><li class="breadcrumb-item" aria-current="page">02-git-basics</li></ul> <a class="edit" href="https://github.com/JunctionTerms/progit-book/edit/gh-pages/02-git-basics.md" title="Edit on GitHub" rel="noreferrer" target="_blank"> <i class="fa fa-edit"></i> </a> </div> <hr> <div role="main" itemscope="itemscope" itemtype="https://schema.org/Article"> <div class="markdown-body" itemprop="articleBody"> <h1 id="git-basics">Git Basics</h1> <p>If you can read only one chapter to get going with Git, this is it. This chapter covers every basic command you need to do the vast majority of the things you'll eventually spend your time doing with Git. By the end of the chapter, you should be able to configure and initialize a repository, begin and stop tracking files, and stage and commit changes. We'll also show you how to set up Git to ignore certain files and file patterns, how to undo mistakes quickly and easily, how to browse the history of your project and view changes between commits, and how to push and pull from remote repositories.</p> <h2 id="getting-a-git-repository">Getting a Git Repository</h2> <p>You can get a Git project using two main approaches. The first takes an existing project or directory and imports it into Git. The second clones an existing Git repository from another server.</p> <h3 id="initializing-a-repository-in-an-existing-directory">Initializing a Repository in an Existing Directory</h3> <p>If you're starting to track an existing project in Git, you need to go to the project's directory and type</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git init
+</code></pre>  </div></div> <p>This creates a new subdirectory named <code class="language-plaintext highlighter-rouge notranslate">.git</code> that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. (See <em>Chapter 9</em> for more information about exactly what files are contained in the <code class="language-plaintext highlighter-rouge notranslate">.git</code> directory you just created.)</p> <p>If you want to start version-controlling existing files (as opposed to an empty directory), you should probably begin tracking those files and do an initial commit. You can accomplish that with a few <code class="language-plaintext highlighter-rouge notranslate">git add</code> commands that specify the files you want to track, followed by a commit:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git add *.c
+$ git add README
+$ git commit -m 'initial project version'
+</code></pre>  </div></div> <p>We'll go over what these commands do in just a minute. At this point, you have a Git repository with tracked files and an initial commit.</p> <h3 id="cloning-an-existing-repository">Cloning an Existing Repository</h3> <p>If you want to get a copy of an existing Git repository — for example, a project you'd like to contribute to — the command you need is <code class="language-plaintext highlighter-rouge notranslate">git clone</code>. If you're familiar with other VCS systems such as Subversion, you'll notice that the command is <code class="language-plaintext highlighter-rouge notranslate">clone</code> and not <code class="language-plaintext highlighter-rouge notranslate">checkout</code>. This is an important distinction — Git receives a copy of nearly all data that the server has. Every version of every file for the history of the project is pulled down when you run <code class="language-plaintext highlighter-rouge notranslate">git clone</code>. In fact, if your server disk gets corrupted, you can use any of the clones on any client to set the server back to the state it was in when it was cloned (you may lose some server-side hooks and such, but all the versioned data would be there — see <em>Chapter 4</em> for more details).</p> <p>You clone a repository with <code class="language-plaintext highlighter-rouge notranslate">git clone [url]</code>. For example, if you want to clone the Ruby Git library called Grit, you can do so like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git clone git://github.com/schacon/grit.git
+</code></pre>  </div></div> <p>That creates a directory named <code class="language-plaintext highlighter-rouge notranslate">grit</code>, initializes a <code class="language-plaintext highlighter-rouge notranslate">.git</code> directory inside it, pulls down all the data for that repository, and checks out a working copy of the latest version. If you go into the new <code class="language-plaintext highlighter-rouge notranslate">grit</code> directory, you'll see the project files in there, ready to be worked on or used. If you want to clone the repository into a directory named something other than grit, you can specify that as the next command-line option:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git clone git://github.com/schacon/grit.git mygrit
+</code></pre>  </div></div> <p>That command does the same thing as the previous one, but the target directory is called <code class="language-plaintext highlighter-rouge notranslate">mygrit</code>.</p> <p>Git has a number of different transfer protocols you can use. The previous example uses the <code class="language-plaintext highlighter-rouge notranslate">git://</code> protocol, but you may also see <code class="language-plaintext highlighter-rouge notranslate">http(s)://</code> or <code class="language-plaintext highlighter-rouge notranslate">user@server:/path.git</code>, which uses the SSH transfer protocol. <em>Chapter 4</em> will introduce all of the available options the server can set up to access your Git repository and the pros and cons of each.</p> <h2 id="recording-changes-to-the-repository">Recording Changes to the Repository</h2> <p>You have a bona fide Git repository and a checkout or working copy of the files for that project. You need to make some changes and commit snapshots of those changes into your repository each time the project reaches a state you want to record.</p> <p>Remember that each file in your working directory can be in one of two states: <em>tracked</em> or <em>untracked</em>. <em>Tracked</em> files are files that were in the last snapshot; they can be <em>unmodified</em>, <em>modified</em>, or <em>staged</em>. <em>Untracked</em> files are everything else — any files in your working directory that were not in your last snapshot and are not in your staging area. When you first clone a repository, all of your files will be tracked and unmodified because you just checked them out and haven't edited anything.</p> <p>As you edit files, Git sees them as modified, because you've changed them since your last commit. You <em>stage</em> these modified files and then commit all your staged changes, and the cycle repeats. This lifecycle is illustrated in Figure 2-1.</p> <p>Insert 18333fig0201.png Figure 2-1. The lifecycle of the status of your files.</p> <h3 id="checking-the-status-of-your-files">Checking the Status of Your Files</h3> <p>The main tool you use to determine which files are in which state is the <code class="language-plaintext highlighter-rouge notranslate">git status</code> command. If you run this command directly after a clone, you should see something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+nothing to commit, working directory clean
+</code></pre>  </div></div> <p>This means you have a clean working directory — in other words, no tracked files are modified. Git also doesn't see any untracked files, or they would be listed here. Finally, the command tells you which branch you're on. For now, that is always <code class="language-plaintext highlighter-rouge notranslate">master</code>, which is the default; you won't worry about it here. The next chapter will go over branches and references in detail.</p> <p>Let's say you add a new file to your project, a simple <code class="language-plaintext highlighter-rouge notranslate">README</code> file. If the file didn't exist before, and you run <code class="language-plaintext highlighter-rouge notranslate">git status</code>, you see your untracked file like so:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ vim README
+$ git status
+On branch master
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+        README
+
+nothing added to commit but untracked files present (use "git add" to track)
+</code></pre>  </div></div> <p>You can see that your new <code class="language-plaintext highlighter-rouge notranslate">README</code> file is untracked, because it's under the "Untracked files" heading in your status output. Untracked basically means that Git sees a file you didn't have in the previous snapshot (commit); Git won't start including it in your commit snapshots until you explicitly tell it to do so. It does this so you don't accidentally begin including generated binary files or other files that you did not mean to include. You do want to start including README, so let's start tracking the file.</p> <h3 id="tracking-new-files">Tracking New Files</h3> <p>In order to begin tracking a new file, you use the command <code class="language-plaintext highlighter-rouge notranslate">git add</code>. To begin tracking the <code class="language-plaintext highlighter-rouge notranslate">README</code> file, you can run this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git add README
+</code></pre>  </div></div> <p>If you run your status command again, you can see that your <code class="language-plaintext highlighter-rouge notranslate">README</code> file is now tracked and staged:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        new file:   README
+</code></pre>  </div></div> <p>You can tell that it's staged because it's under the "Changes to be committed" heading. If you commit at this point, the version of the file at the time you ran <code class="language-plaintext highlighter-rouge notranslate">git add</code> is what will be in the historical snapshot. You may recall that when you ran <code class="language-plaintext highlighter-rouge notranslate">git init</code> earlier, you then ran <code class="language-plaintext highlighter-rouge notranslate">git add (files)</code> — that was to begin tracking files in your directory. The <code class="language-plaintext highlighter-rouge notranslate">git add</code> command takes a path name for either a file or a directory; if it's a directory, the command adds all the files in that directory recursively.</p> <h3 id="staging-modified-files">Staging Modified Files</h3> <p>Let's change a file that was already tracked. If you change a previously tracked file called <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> and then run your <code class="language-plaintext highlighter-rouge notranslate">status</code> command again, you get something that looks like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        new file:   README
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>The <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file appears under a section named "Changes not staged for commit" — which means that a file that is tracked has been modified in the working directory but not yet staged. To stage it, you run the <code class="language-plaintext highlighter-rouge notranslate">git add</code> command (it's a multipurpose command — you use it to begin tracking new files, to stage files, and to do other things like marking merge-conflicted files as resolved). Let's run <code class="language-plaintext highlighter-rouge notranslate">git add</code> now to stage the <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file, and then run <code class="language-plaintext highlighter-rouge notranslate">git status</code> again:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git add benchmarks.rb
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        new file:   README
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>Both files are staged and will go into your next commit. At this point, suppose you remember one little change that you want to make in <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> before you commit it. You open it again and make that change, and you're ready to commit. However, let's run <code class="language-plaintext highlighter-rouge notranslate">git status</code> one more time:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ vim benchmarks.rb
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        new file:   README
+        modified:   benchmarks.rb
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>What the heck? Now <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> is listed as both staged and unstaged. How is that possible? It turns out that Git stages a file exactly as it is when you run the <code class="language-plaintext highlighter-rouge notranslate">git add</code> command. If you commit now, the version of <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> as it was when you last ran the <code class="language-plaintext highlighter-rouge notranslate">git add</code> command is how it will go into the commit, not the version of the file as it looks in your working directory when you run <code class="language-plaintext highlighter-rouge notranslate">git commit</code>. If you modify a file after you run <code class="language-plaintext highlighter-rouge notranslate">git add</code>, you have to run <code class="language-plaintext highlighter-rouge notranslate">git add</code> again to stage the latest version of the file:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git add benchmarks.rb
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        new file:   README
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <h3 id="ignoring-files">Ignoring Files</h3> <p>Often, you'll have a class of files that you don't want Git to automatically add or even show you as being untracked. These are generally automatically generated files such as log files or files produced by your build system. In such cases, you can create a file listing patterns to match them named <code class="language-plaintext highlighter-rouge notranslate">.gitignore</code>. Here is an example <code class="language-plaintext highlighter-rouge notranslate">.gitignore</code> file:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ cat .gitignore
+*.[oa]
+*~
+</code></pre>  </div></div> <p>The first line tells Git to ignore any files ending in <code class="language-plaintext highlighter-rouge notranslate">.o</code> or <code class="language-plaintext highlighter-rouge notranslate">.a</code> — <em>object</em> and <em>archive</em> files that may be the product of building your code. The second line tells Git to ignore all files that end with a tilde (<code class="language-plaintext highlighter-rouge notranslate">~</code>), which is used by many text editors such as Emacs to mark temporary files. You may also include a <code class="language-plaintext highlighter-rouge notranslate">log</code>, <code class="language-plaintext highlighter-rouge notranslate">tmp</code>, or <code class="language-plaintext highlighter-rouge notranslate">pid</code> directory; automatically generated documentation; and so on. Setting up a <code class="language-plaintext highlighter-rouge notranslate">.gitignore</code> file before you get going is generally a good idea so you don't accidentally commit files that you really don't want in your Git repository.</p> <p>The rules for the patterns you can put in the <code class="language-plaintext highlighter-rouge notranslate">.gitignore</code> file are as follows:</p> <ul> <li>Blank lines or lines starting with <code class="language-plaintext highlighter-rouge notranslate">#</code> are ignored.</li> <li>Standard glob patterns work.</li> <li>You can end patterns with a forward slash (<code class="language-plaintext highlighter-rouge notranslate">/</code>) to specify a directory.</li> <li>You can negate a pattern by starting it with an exclamation point (<code class="language-plaintext highlighter-rouge notranslate">!</code>).</li> </ul> <p>Glob patterns are like simplified regular expressions that shells use. An asterisk (<code class="language-plaintext highlighter-rouge notranslate">*</code>) matches zero or more characters; <code class="language-plaintext highlighter-rouge notranslate">[abc]</code> matches any character inside the brackets (in this case <code class="language-plaintext highlighter-rouge notranslate">a</code>, <code class="language-plaintext highlighter-rouge notranslate">b</code>, or <code class="language-plaintext highlighter-rouge notranslate">c</code>); a question mark (<code class="language-plaintext highlighter-rouge notranslate">?</code>) matches a single character; and brackets enclosing characters separated by a hyphen(<code class="language-plaintext highlighter-rouge notranslate">[0-9]</code>) matches any character in the range (in this case 0 through 9) .</p> <p>Here is another example <code class="language-plaintext highlighter-rouge notranslate">.gitignore</code> file:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code># a comment - this is ignored
+# no .a files
+*.a
+# but do track lib.a, even though you're ignoring .a files above
+!lib.a
+# only ignore the root TODO file, not subdir/TODO
+/TODO
+# ignore all files in the build/ directory
+build/
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+# ignore all .txt files in the doc/ directory
+doc/**/*.txt
+</code></pre>  </div></div> <p>A <code class="language-plaintext highlighter-rouge notranslate">**/</code> pattern is available in Git since version 1.8.2.</p> <h3 id="viewing-your-staged-and-unstaged-changes">Viewing Your Staged and Unstaged Changes</h3> <p>If the <code class="language-plaintext highlighter-rouge notranslate">git status</code> command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the <code class="language-plaintext highlighter-rouge notranslate">git diff</code> command. We'll cover <code class="language-plaintext highlighter-rouge notranslate">git diff</code> in more detail later; but you'll probably use it most often to answer these two questions: What have you changed but not yet staged? And what have you staged that you are about to commit? Although <code class="language-plaintext highlighter-rouge notranslate">git status</code> answers those questions very generally, <code class="language-plaintext highlighter-rouge notranslate">git diff</code> shows you the exact lines added and removed — the patch, as it were.</p> <p>Let's say you edit and stage the <code class="language-plaintext highlighter-rouge notranslate">README</code> file again and then edit the <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file without staging it. If you run your <code class="language-plaintext highlighter-rouge notranslate">status</code> command, you once again see something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        new file:   README
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>To see what you've changed but not yet staged, type <code class="language-plaintext highlighter-rouge notranslate">git diff</code> with no other arguments:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git diff
+diff --git a/benchmarks.rb b/benchmarks.rb
+index 3cb747f..da65585 100644
+--- a/benchmarks.rb
++++ b/benchmarks.rb
+@@ -36,6 +36,10 @@ def main
+           @commit.parents[0].parents[0].parents[0]
+         end
+
++        run_code(x, 'commits 1') do
++          git.commits.size
++        end
++
+         run_code(x, 'commits 2') do
+           log = git.commits('master', 15)
+           log.size
+</code></pre>  </div></div> <p>That command compares what is in your working directory with what is in your staging area. The result tells you the changes you've made that you haven't yet staged.</p> <p>If you want to see what you've staged that will go into your next commit, you can use <code class="language-plaintext highlighter-rouge notranslate">git diff --cached</code>. (In Git versions 1.6.1 and later, you can also use <code class="language-plaintext highlighter-rouge notranslate">git diff --staged</code>, which may be easier to remember.) This command compares your staged changes to your last commit:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git diff --cached
+diff --git a/README b/README
+new file mode 100644
+index 0000000..03902a1
+--- /dev/null
++++ b/README2
+@@ -0,0 +1,5 @@
++grit
++ by Tom Preston-Werner, Chris Wanstrath
++ http://github.com/mojombo/grit
++
++Grit is a Ruby library for extracting information from a Git repository
+</code></pre>  </div></div> <p>It's important to note that <code class="language-plaintext highlighter-rouge notranslate">git diff</code> by itself doesn't show all changes made since your last commit — only changes that are still unstaged. This can be confusing, because if you've staged all of your changes, <code class="language-plaintext highlighter-rouge notranslate">git diff</code> will give you no output.</p> <p>For another example, if you stage the <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file and then edit it, you can use <code class="language-plaintext highlighter-rouge notranslate">git diff</code> to see the changes in the file that are staged and the changes that are unstaged:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git add benchmarks.rb
+$ echo '# test line' &gt;&gt; benchmarks.rb
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        modified:   benchmarks.rb
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>Now you can use <code class="language-plaintext highlighter-rouge notranslate">git diff</code> to see what is still unstaged</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git diff
+diff --git a/benchmarks.rb b/benchmarks.rb
+index e445e28..86b2f7c 100644
+--- a/benchmarks.rb
++++ b/benchmarks.rb
+@@ -127,3 +127,4 @@ end
+ main()
+
+ ##pp Grit::GitRuby.cache_client.stats
++# test line
+</code></pre>  </div></div> <p>and <code class="language-plaintext highlighter-rouge notranslate">git diff --cached</code> to see what you've staged so far:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git diff --cached
+diff --git a/benchmarks.rb b/benchmarks.rb
+index 3cb747f..e445e28 100644
+--- a/benchmarks.rb
++++ b/benchmarks.rb
+@@ -36,6 +36,10 @@ def main
+          @commit.parents[0].parents[0].parents[0]
+        end
+
++        run_code(x, 'commits 1') do
++          git.commits.size
++        end
++
+        run_code(x, 'commits 2') do
+          log = git.commits('master', 15)
+          log.size
+</code></pre>  </div></div> <h3 id="committing-your-changes">Committing Your Changes</h3> <p>Now that your staging area is set up the way you want it, you can commit your changes. Remember that anything that is still unstaged — any files you have created or modified that you haven't run <code class="language-plaintext highlighter-rouge notranslate">git add</code> on since you edited them — won't go into this commit. They will stay as modified files on your disk. In this case, the last time you ran <code class="language-plaintext highlighter-rouge notranslate">git status</code>, you saw that everything was staged, so you're ready to commit your changes. The simplest way to commit is to type <code class="language-plaintext highlighter-rouge notranslate">git commit</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git commit
+</code></pre>  </div></div> <p>Doing so launches your editor of choice. (This is set by your shell's <code class="language-plaintext highlighter-rouge notranslate">$EDITOR</code> environment variable — usually vim or emacs, although you can configure it with whatever you want using the <code class="language-plaintext highlighter-rouge notranslate">git config --global core.editor</code> command as you saw in <em>Chapter 1</em>).</p> <p>The editor displays the following text (this example is a Vim screen):</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code># Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#       new file:   README
+#       modified:   benchmarks.rb
+#
+~
+~
+~
+".git/COMMIT_EDITMSG" 10L, 283C
+</code></pre>  </div></div> <p>You can see that the default commit message contains the latest output of the <code class="language-plaintext highlighter-rouge notranslate">git status</code> command commented out and one empty line on top. You can remove these comments and type your commit message, or you can leave them there to help you remember what you're committing. (For an even more explicit reminder of what you've modified, you can pass the <code class="language-plaintext highlighter-rouge notranslate">-v</code> option to <code class="language-plaintext highlighter-rouge notranslate">git commit</code>. Doing so also puts the diff of your change in the editor so you can see exactly what you did.) When you exit the editor, Git creates your commit with that commit message (with the comments and diff stripped out).</p> <p>Alternatively, you can type your commit message inline with the <code class="language-plaintext highlighter-rouge notranslate">commit</code> command by specifying it after a <code class="language-plaintext highlighter-rouge notranslate">-m</code> flag, like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git commit -m "Story 182: Fix benchmarks for speed"
+[master 463dc4f] Story 182: Fix benchmarks for speed
+ 2 files changed, 3 insertions(+)
+ create mode 100644 README
+</code></pre>  </div></div> <p>Now you've created your first commit! You can see that the commit has given you some output about itself: which branch you committed to (<code class="language-plaintext highlighter-rouge notranslate">master</code>), what SHA-1 checksum the commit has (<code class="language-plaintext highlighter-rouge notranslate">463dc4f</code>), how many files were changed, and statistics about lines added and removed in the commit.</p> <p>Remember that the commit records the snapshot you set up in your staging area. Anything you didn't stage is still sitting there modified; you can do another commit to add it to your history. Every time you perform a commit, you're recording a snapshot of your project that you can revert to or compare to later.</p> <h3 id="skipping-the-staging-area">Skipping the Staging Area</h3> <p>Although it can be amazingly useful for crafting commits exactly how you want them, the staging area is sometimes a bit more complex than you need in your workflow. If you want to skip the staging area, Git provides a simple shortcut. Providing the <code class="language-plaintext highlighter-rouge notranslate">-a</code> option to the <code class="language-plaintext highlighter-rouge notranslate">git commit</code> command makes Git automatically stage every file that is already tracked before doing the commit, letting you skip the <code class="language-plaintext highlighter-rouge notranslate">git add</code> part:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git commit -a -m 'added new benchmarks'
+[master 83e38c7] added new benchmarks
+ 1 files changed, 5 insertions(+)
+</code></pre>  </div></div> <p>Notice how you don't have to run <code class="language-plaintext highlighter-rouge notranslate">git add</code> on the <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file in this case before you commit.</p> <h3 id="removing-files">Removing Files</h3> <p>To remove a file from Git, you have to remove it from your tracked files (more accurately, remove it from your staging area) and then commit. The <code class="language-plaintext highlighter-rouge notranslate">git rm</code> command does that and also removes the file from your working directory so you don't see it as an untracked file next time around.</p> <p>If you simply remove the file from your working directory, it shows up under the "Changes not staged for commit" (that is, <em>unstaged</em>) area of your <code class="language-plaintext highlighter-rouge notranslate">git status</code> output:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ rm grit.gemspec
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        deleted:    grit.gemspec
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre>  </div></div> <p>Then, if you run <code class="language-plaintext highlighter-rouge notranslate">git rm</code>, it stages the file's removal:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git rm grit.gemspec
+rm 'grit.gemspec'
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        deleted:    grit.gemspec
+</code></pre>  </div></div> <p>The next time you commit, the file will be gone and no longer tracked. If you modified the file and added it to the index already, you must force the removal with the <code class="language-plaintext highlighter-rouge notranslate">-f</code> option. This is a safety feature to prevent accidental removal of data that hasn't yet been recorded in a snapshot and that can't be recovered from Git.</p> <p>Another useful thing you may want to do is to keep the file in your working tree but remove it from your staging area. In other words, you may want to keep the file on your hard drive but not have Git track it anymore. This is particularly useful if you forgot to add something to your <code class="language-plaintext highlighter-rouge notranslate">.gitignore</code> file and accidentally staged it, like a large log file or a bunch of <code class="language-plaintext highlighter-rouge notranslate">.a</code> compiled files. To do this, use the <code class="language-plaintext highlighter-rouge notranslate">--cached</code> option:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git rm --cached readme.txt
+</code></pre>  </div></div> <p>You can pass files, directories, and file-glob patterns to the <code class="language-plaintext highlighter-rouge notranslate">git rm</code> command. That means you can do things such as</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git rm log/\*.log
+</code></pre>  </div></div> <p>Note the backslash (<code class="language-plaintext highlighter-rouge notranslate">\</code>) in front of the <code class="language-plaintext highlighter-rouge notranslate">*</code>. This is necessary because Git does its own filename expansion in addition to your shell's filename expansion. On Windows with the system console, the backslash must be omitted. This command removes all files that have the <code class="language-plaintext highlighter-rouge notranslate">.log</code> extension in the <code class="language-plaintext highlighter-rouge notranslate">log/</code> directory. Or, you can do something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git rm \*~
+</code></pre>  </div></div> <p>This command removes all files that end with <code class="language-plaintext highlighter-rouge notranslate">~</code>.</p> <h3 id="moving-files">Moving Files</h3> <p>Unlike many other VCS systems, Git doesn't explicitly track file movement. If you rename a file in Git, no metadata is stored in Git that tells it you renamed the file. However, Git is pretty smart about figuring that out after the fact — we'll deal with detecting file movement a bit later.</p> <p>Thus it's a bit confusing that Git has a <code class="language-plaintext highlighter-rouge notranslate">mv</code> command. If you want to rename a file in Git, you can run something like</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git mv file_from file_to
+</code></pre>  </div></div> <p>and it works fine. In fact, if you run something like this and look at the status, you'll see that Git considers it a renamed file:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git mv README README.txt
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        renamed:    README -&gt; README.txt
+</code></pre>  </div></div> <p>However, this is equivalent to running something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ mv README README.txt
+$ git rm README
+$ git add README.txt
+</code></pre>  </div></div> <p>Git figures out that it's a rename implicitly, so it doesn't matter if you rename a file that way or with the <code class="language-plaintext highlighter-rouge notranslate">mv</code> command. The only real difference is that <code class="language-plaintext highlighter-rouge notranslate">mv</code> is one command instead of three — it's a convenience function. More important, you can use any tool you like to rename a file, and address the add/rm later, before you commit.</p> <h2 id="viewing-the-commit-history">Viewing the Commit History</h2> <p>After you have created several commits, or if you have cloned a repository with an existing commit history, you'll probably want to look back to see what has happened. The most basic and powerful tool to do this is the <code class="language-plaintext highlighter-rouge notranslate">git log</code> command.</p> <p>These examples use a very simple project called <code class="language-plaintext highlighter-rouge notranslate">simplegit</code> that I often use for demonstrations. To get the project, run</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>git clone git://github.com/schacon/simplegit-progit.git
+</code></pre>  </div></div> <p>When you run <code class="language-plaintext highlighter-rouge notranslate">git log</code> in this project, you should get output that looks something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test code
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+</code></pre>  </div></div> <p>By default, with no arguments, <code class="language-plaintext highlighter-rouge notranslate">git log</code> lists the commits made in that repository in reverse chronological order. That is, the most recent commits show up first. As you can see, this command lists each commit with its SHA-1 checksum, the author's name and e-mail, the date written, and the commit message.</p> <p>A huge number and variety of options to the <code class="language-plaintext highlighter-rouge notranslate">git log</code> command are available to show you exactly what you're looking for. Here, we'll show you some of the most-used options.</p> <p>One of the more helpful options is <code class="language-plaintext highlighter-rouge notranslate">-p</code>, which shows the diff introduced in each commit. You can also use <code class="language-plaintext highlighter-rouge notranslate">-2</code>, which limits the output to only the last two entries:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log -p -2
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+diff --git a/Rakefile b/Rakefile
+index a874b73..8f94139 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -5,5 +5,5 @@ require 'rake/gempackagetask'
+ spec = Gem::Specification.new do |s|
+     s.name      =   "simplegit"
+-    s.version   =   "0.1.0"
++    s.version   =   "0.1.1"
+     s.author    =   "Scott Chacon"
+     s.email     =   "schacon@gee-mail.com
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test code
+
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index a0a60ae..47c6340 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -18,8 +18,3 @@ class SimpleGit
+     end
+
+ end
+-
+-if $0 == __FILE__
+-  git = SimpleGit.new
+-  puts git.show
+-end
+\ No newline at end of file
+</code></pre>  </div></div> <p>This option displays the same information but with a diff directly following each entry. This is very helpful for code review or to quickly browse what happened during a series of commits that a collaborator has added.</p> <p>Sometimes it's easier to review changes on the word level rather than on the line level. There is a <code class="language-plaintext highlighter-rouge notranslate">--word-diff</code> option available in Git, that you can append to the <code class="language-plaintext highlighter-rouge notranslate">git log -p</code> command to get word diff instead of normal line by line diff. Word diff format is quite useless when applied to source code, but it comes in handy when applied to large text files, like books or your dissertation. Here is an example:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log -U1 --word-diff
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+diff --git a/Rakefile b/Rakefile
+index a874b73..8f94139 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -7,3 +7,3 @@ spec = Gem::Specification.new do |s|
+    s.name      =   "simplegit"
+    s.version   =   [-"0.1.0"-]{+"0.1.1"+}
+    s.author    =   "Scott Chacon"
+</code></pre>  </div></div> <p>As you can see, there is no added and removed lines in this output as in a normal diff. Changes are shown inline instead. You can see the added word enclosed in <code class="language-plaintext highlighter-rouge notranslate">{+ +}</code> and removed one enclosed in <code class="language-plaintext highlighter-rouge notranslate">[- -]</code>. You may also want to reduce the usual three lines context in diff output to only one line, as the context is now words, not lines. You can do this with <code class="language-plaintext highlighter-rouge notranslate">-U1</code> as we did in the example above.</p> <p>You can also use a series of summarizing options with <code class="language-plaintext highlighter-rouge notranslate">git log</code>. For example, if you want to see some abbreviated stats for each commit, you can use the <code class="language-plaintext highlighter-rouge notranslate">--stat</code> option:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --stat
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+ Rakefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test code
+
+ lib/simplegit.rb |    5 -----
+ 1 file changed, 5 deletions(-)
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+
+ README           |    6 ++++++
+ Rakefile         |   23 +++++++++++++++++++++++
+ lib/simplegit.rb |   25 +++++++++++++++++++++++++
+ 3 files changed, 54 insertions(+)
+</code></pre>  </div></div> <p>As you can see, the <code class="language-plaintext highlighter-rouge notranslate">--stat</code> option prints below each commit entry a list of modified files, how many files were changed, and how many lines in those files were added and removed. It also puts a summary of the information at the end. Another really useful option is <code class="language-plaintext highlighter-rouge notranslate">--pretty</code>. This option changes the log output to formats other than the default. A few prebuilt options are available for you to use. The <code class="language-plaintext highlighter-rouge notranslate">oneline</code> option prints each commit on a single line, which is useful if you're looking at a lot of commits. In addition, the <code class="language-plaintext highlighter-rouge notranslate">short</code>, <code class="language-plaintext highlighter-rouge notranslate">full</code>, and <code class="language-plaintext highlighter-rouge notranslate">fuller</code> options show the output in roughly the same format but with less or more information, respectively:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --pretty=oneline
+ca82a6dff817ec66f44342007202690a93763949 changed the version number
+085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test code
+a11bef06a3f659402fe7563abf99ad00de2209e6 first commit
+</code></pre>  </div></div> <p>The most interesting option is <code class="language-plaintext highlighter-rouge notranslate">format</code>, which allows you to specify your own log output format. This is especially useful when you're generating output for machine parsing — because you specify the format explicitly, you know it won't change with updates to Git:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --pretty=format:"%h - %an, %ar : %s"
+ca82a6d - Scott Chacon, 11 months ago : changed the version number
+085bb3b - Scott Chacon, 11 months ago : removed unnecessary test code
+a11bef0 - Scott Chacon, 11 months ago : first commit
+</code></pre>  </div></div> <p>Table 2-1 lists some of the more useful options that format takes.</p> <!-- Attention to translators: this is a table declaration. The lines must be formatted as follows <TAB><First column text><TAB><Second column text> --> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>Option	Description of Output
+%H	Commit hash
+%h	Abbreviated commit hash
+%T	Tree hash
+%t	Abbreviated tree hash
+%P	Parent hashes
+%p	Abbreviated parent hashes
+%an	Author name
+%ae	Author e-mail
+%ad	Author date (format respects the --date= option)
+%ar	Author date, relative
+%cn	Committer name
+%ce	Committer email
+%cd	Committer date
+%cr	Committer date, relative
+%s	Subject
+</code></pre>  </div></div> <p>You may be wondering what the difference is between <em>author</em> and <em>committer</em>. The <em>author</em> is the person who originally wrote the patch, whereas the <em>committer</em> is the person who last applied the patch. So, if you send in a patch to a project and one of the core members applies the patch, both of you get credit — you as the author and the core member as the committer. We'll cover this distinction a bit more in <em>Chapter 5</em>.</p> <p>The <code class="language-plaintext highlighter-rouge notranslate">oneline</code> and <code class="language-plaintext highlighter-rouge notranslate">format</code> options are particularly useful with another <code class="language-plaintext highlighter-rouge notranslate">log</code> option called <code class="language-plaintext highlighter-rouge notranslate">--graph</code>. This option adds a nice little ASCII graph showing your branch and merge history, which we can see in our copy of the Grit project repository:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --pretty=format:"%h %s" --graph
+* 2d3acf9 ignore errors from SIGCHLD on trap
+*  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
+|\
+| * 420eac9 Added a method for getting the current branch.
+* | 30e367c timeout code and tests
+* | 5a09431 add timeout protection to grit
+* | e1193f8 support for heads with slashes in them
+|/
+* d6016bc require time for xmlschema
+*  11d191e Merge branch 'defunkt' into local
+</code></pre>  </div></div> <p>Those are only some simple output-formatting options to <code class="language-plaintext highlighter-rouge notranslate">git log</code> — there are many more. Table 2-2 lists the options we've covered so far and some other common formatting options that may be useful, along with how they change the output of the <code class="language-plaintext highlighter-rouge notranslate">log</code> command.</p> <!-- Attention to translators: this is a table declaration. The lines must be formatted as follows <TAB><First column text><TAB><Second column text> --> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>Option	Description
+-p	Show the patch introduced with each commit.
+--word-diff	Show the patch in a word diff format.
+--stat	Show statistics for files modified in each commit.
+--shortstat	Display only the changed/insertions/deletions line from the --stat command.
+--name-only	Show the list of files modified after the commit information.
+--name-status	Show the list of files affected with added/modified/deleted information as well.
+--abbrev-commit	Show only the first few characters of the SHA-1 checksum instead of all 40.
+--relative-date	Display the date in a relative format (for example, "2 weeks ago") instead of using the full date format.
+--graph	Display an ASCII graph of the branch and merge history beside the log output.
+--pretty	Show commits in an alternate format. Options include oneline, short, full, fuller, and format (where you specify your own format).
+--oneline	A convenience option short for `--pretty=oneline --abbrev-commit`.
+</code></pre>  </div></div> <h3 id="limiting-log-output">Limiting Log Output</h3> <p>In addition to output-formatting options, <code class="language-plaintext highlighter-rouge notranslate">git log</code> takes a number of useful limiting options — that is, options that let you show only a subset of commits. You've seen one such option already — the <code class="language-plaintext highlighter-rouge notranslate">-2</code> option, which shows only the last two commits. In fact, you can do <code class="language-plaintext highlighter-rouge notranslate">-&lt;n&gt;</code>, where <code class="language-plaintext highlighter-rouge notranslate">n</code> is any integer to show the last <code class="language-plaintext highlighter-rouge notranslate">n</code> commits. In reality, you're unlikely to use that often, because Git by default pipes all output through a pager so you see only one page of log output at a time.</p> <p>However, the time-limiting options such as <code class="language-plaintext highlighter-rouge notranslate">--since</code> and <code class="language-plaintext highlighter-rouge notranslate">--until</code> are very useful. For example, this command gets the list of commits made in the last two weeks:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --since=2.weeks
+</code></pre>  </div></div> <p>This command works with lots of formats — you can specify a specific date ("2008-01-15") or a relative date such as "2 years 1 day 3 minutes ago".</p> <p>You can also filter the list to commits that match some search criteria. The <code class="language-plaintext highlighter-rouge notranslate">--author</code> option allows you to filter on a specific author, and the <code class="language-plaintext highlighter-rouge notranslate">--grep</code> option lets you search for keywords in the commit messages. (Note that if you specify both author and grep options, the command will match commits with both.)</p> <p>If you want to specify multiple grep options, you have to add <code class="language-plaintext highlighter-rouge notranslate">--all-match</code> or the command will match commits with either.</p> <p>The last really useful option to pass to <code class="language-plaintext highlighter-rouge notranslate">git log</code> as a filter is a path. If you specify a directory or file name, you can limit the log output to commits that introduced a change to those files. This is always the last option and is generally preceded by double dashes (<code class="language-plaintext highlighter-rouge notranslate">--</code>) to separate the paths from the options.</p> <p>In Table 2-3 we'll list these and a few other common options for your reference.</p> <!-- Attention to translators: this is a table declaration. The lines must be formatted as follows <TAB><First column text><TAB><Second column text> --> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>Option	Description
+-(n)	Show only the last n commits
+--since, --after	Limit the commits to those whose CommitDate was made on-or-after the specified date/time.
+--until, --before	Limit the commits to those whose CommitDate was made on-or-before the specified date/time.
+--author	Only show commits in which the author entry matches the specified string.
+--committer	Only show commits in which the committer entry matches the specified string.
+</code></pre>  </div></div> <h3 id="limiting-log-output-according-to-datetime">Limiting Log Output according to Date/Time</h3> <p>To determine which commits in the Git source code repository (git://git.kernel.org/pub/scm/git/git.git) have CommitDate on 2014-04-29 relative to your local timezone (as set on your computer), use</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --after="2014-04-29 00:00:00" --before="2014-04-29 23:59:59" \
+  --pretty=fuller
+</code></pre>  </div></div> <p>As the output will be different according to the timezone where it will be run, it's recommended to always use an absolute time such as ISO 8601 format (which includes timezone information) as argument to <code class="language-plaintext highlighter-rouge notranslate">--after</code> and <code class="language-plaintext highlighter-rouge notranslate">--before</code>, so that everone running the command will get the same repeatable results.</p> <p>To obtain commits made at a specific instant in time (e.g. 29 April 2013 at 17:07:22 CET), we can use</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log  --after="2013-04-29T17:07:22+0200"      \
+          --before="2013-04-29T17:07:22+0200" --pretty=fuller
+
+commit de7c201a10857e5d424dbd8db880a6f24ba250f9
+Author:     Ramkumar Ramachandra &lt;artagnon@gmail.com&gt;
+AuthorDate: Mon Apr 29 18:19:37 2013 +0530
+Commit:     Junio C Hamano &lt;gitster@pobox.com&gt;
+CommitDate: Mon Apr 29 08:07:22 2013 -0700
+
+    git-completion.bash: lexical sorting for diff.statGraphWidth
+    
+    df44483a (diff --stat: add config option to limit graph width,
+    2012-03-01) added the option diff.startGraphWidth to the list of
+    configuration variables in git-completion.bash, but failed to notice
+    that the list is sorted alphabetically.  Move it to its rightful place
+    in the list.
+    
+    Signed-off-by: Ramkumar Ramachandra &lt;artagnon@gmail.com&gt;
+    Signed-off-by: Junio C Hamano &lt;gitster@pobox.com&gt;
+</code></pre>  </div></div> <p>The above times (<code class="language-plaintext highlighter-rouge notranslate">AuthorDate</code>, <code class="language-plaintext highlighter-rouge notranslate">CommitDate</code>) are displayed in default format (<code class="language-plaintext highlighter-rouge notranslate">--date=default</code>), which shows timezone information of respective author and commiter.</p> <p>Other useful formats include <code class="language-plaintext highlighter-rouge notranslate">--date=iso</code> (ISO 8601), <code class="language-plaintext highlighter-rouge notranslate">--date=rfc</code> (RFC 2822), <code class="language-plaintext highlighter-rouge notranslate">--date=raw</code> (seconds since the epoch (1970-01-01 UTC)) <code class="language-plaintext highlighter-rouge notranslate">--date=local</code> (times according to your local timezone) as well as <code class="language-plaintext highlighter-rouge notranslate">--date=relative</code> (e.g. "2 hours ago").</p> <p>When using <code class="language-plaintext highlighter-rouge notranslate">git log</code> without specifying time, the time defaults to the time at which the command is run on your computer (keeping the identical offset from UTC).</p> <p>For example, running a <code class="language-plaintext highlighter-rouge notranslate">git log</code> at 09:00 on your computer with your timezone currently 3 hours ahead of UTC, makes the following two commands equivalent:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --after=2008-06-01 --before=2008-07-01
+$ git log --after="2008-06-01T09:00:00+0300" \
+    --before="2008-07-01T09:00:00+0300"
+</code></pre>  </div></div> <p>As a final example, if you want to see which commits modifying test files in the Git source code history were committed by Junio Hamano with CommitDate being in the month of October 2008 (relative to the timezone of New York) and were not merges, you can run something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>    $ git log --pretty="%h - %s" --author=gitster \
+       --after="2008-10-01T00:00:00-0400"         \
+      --before="2008-10-31T23:59:59-0400" --no-merges -- t/
+5610e3b - Fix testcase failure when extended attribute
+acd3b9e - Enhance hold_lock_file_for_{update,append}()
+f563754 - demonstrate breakage of detached checkout wi
+d1a43f2 - reset --hard/read-tree --reset -u: remove un
+51a94af - Fix "checkout --track -b newbranch" on detac
+b0ad11e - pull: allow "git pull origin $something:$cur
+</code></pre>  </div></div> <p>Of the more than 36,000 commits in the Git source code history, this command shows the 6 that match those criteria.</p> <h3 id="using-a-gui-to-visualize-history">Using a GUI to Visualize History</h3> <p>If you like to use a more graphical tool to visualize your commit history, you may want to take a look at a Tcl/Tk program called <code class="language-plaintext highlighter-rouge notranslate">gitk</code> that is distributed with Git. Gitk is basically a visual <code class="language-plaintext highlighter-rouge notranslate">git log</code> tool, and it accepts nearly all the filtering options that <code class="language-plaintext highlighter-rouge notranslate">git log</code> does. If you type <code class="language-plaintext highlighter-rouge notranslate">gitk</code> on the command line in your project, you should see something like Figure 2-2.</p> <p>Insert 18333fig0202.png Figure 2-2. The gitk history visualizer.</p> <p>You can see the commit history in the top half of the window along with a nice ancestry graph. The diff viewer in the bottom half of the window shows you the changes introduced at any commit you click.</p> <h2 id="undoing-things">Undoing Things</h2> <p>At any stage, you may want to undo something. Here, we'll review a few basic tools for undoing changes that you've made. Be careful, because you can't always revert some of these undos. This is one of the few areas in Git where you may lose some work if you do it wrong.</p> <h3 id="changing-your-last-commit">Changing Your Last Commit</h3> <p>One of the common undos takes place when you commit too early and possibly forget to add some files, or you mess up your commit message. If you want to try that commit again, you can run commit with the <code class="language-plaintext highlighter-rouge notranslate">--amend</code> option:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git commit --amend
+</code></pre>  </div></div> <p>This command takes your staging area and uses it for the commit. If you've made no changes since your last commit (for instance, you run this command immediately after your previous commit), then your snapshot will look exactly the same and all you'll change is your commit message.</p> <p>The same commit-message editor fires up, but it already contains the message of your previous commit. You can edit the message the same as always, but it overwrites your previous commit.</p> <p>As an example, if you commit and then realize you forgot to stage the changes in a file you wanted to add to this commit, you can do something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git commit -m 'initial commit'
+$ git add forgotten_file
+$ git commit --amend
+</code></pre>  </div></div> <p>After these three commands, you end up with a single commit — the second commit replaces the results of the first.</p> <h3 id="unstaging-a-staged-file">Unstaging a Staged File</h3> <p>The next two sections demonstrate how to wrangle your staging area and working directory changes. The nice part is that the command you use to determine the state of those two areas also reminds you how to undo changes to them. For example, let's say you've changed two files and want to commit them as two separate changes, but you accidentally type <code class="language-plaintext highlighter-rouge notranslate">git add *</code> and stage them both. How can you unstage one of the two? The <code class="language-plaintext highlighter-rouge notranslate">git status</code> command reminds you:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git add .
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        modified:   README.txt
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>Right below the "Changes to be committed" text, it says "use <code class="language-plaintext highlighter-rouge notranslate">git reset HEAD &lt;file&gt;...</code> to unstage". So, let's use that advice to unstage the <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git reset HEAD benchmarks.rb
+Unstaged changes after reset:
+M       benchmarks.rb
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        modified:   README.txt
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>The command is a bit strange, but it works. The <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file is modified but once again unstaged.</p> <h3 id="unmodifying-a-modified-file">Unmodifying a Modified File</h3> <p>What if you realize that you don't want to keep your changes to the <code class="language-plaintext highlighter-rouge notranslate">benchmarks.rb</code> file? How can you easily unmodify it — revert it back to what it looked like when you last committed (or initially cloned, or however you got it into your working directory)? Luckily, <code class="language-plaintext highlighter-rouge notranslate">git status</code> tells you how to do that, too. In the last example output, the unstaged area looks like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   benchmarks.rb
+</code></pre>  </div></div> <p>It tells you pretty explicitly how to discard the changes you've made (at least, the newer versions of Git, 1.6.1 and later, do this — if you have an older version, we highly recommend upgrading it to get some of these nicer usability features). Let's do what it says:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git checkout -- benchmarks.rb
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        modified:   README.txt
+</code></pre>  </div></div> <p>You can see that the changes have been reverted. You should also realize that this is a dangerous command: any changes you made to that file are gone — you just copied another file over it. Don't ever use this command unless you absolutely know that you don't want the file. If you just need to get it out of the way, we'll go over stashing and branching in the next chapter; these are generally better ways to go.</p> <p>Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an <code class="language-plaintext highlighter-rouge notranslate">--amend</code> commit can be recovered (see <em>Chapter 9</em> for data recovery). However, anything you lose that was never committed is likely never to be seen again.</p> <h2 id="working-with-remotes">Working with Remotes</h2> <p>To be able to collaborate on any Git project, you need to know how to manage your remote repositories. Remote repositories are versions of your project that are hosted on the Internet or network somewhere. You can have several of them, each of which generally is either read-only or read/write for you. Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more. In this section, we'll cover these remote-management skills.</p> <h3 id="showing-your-remotes">Showing Your Remotes</h3> <p>To see which remote servers you have configured, you can run the <code class="language-plaintext highlighter-rouge notranslate">git remote</code> command. It lists the shortnames of each remote handle you've specified. If you've cloned your repository, you should at least see <em>origin</em> — that is the default name Git gives to the server you cloned from:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git clone git://github.com/schacon/ticgit.git
+Cloning into 'ticgit'...
+remote: Reusing existing pack: 1857, done.
+remote: Total 1857 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (1857/1857), 374.35 KiB | 193.00 KiB/s, done.
+Resolving deltas: 100% (772/772), done.
+Checking connectivity... done.
+$ cd ticgit
+$ git remote
+origin
+</code></pre>  </div></div> <p>You can also specify <code class="language-plaintext highlighter-rouge notranslate">-v</code>, which shows you the URL that Git has stored for the shortname to be expanded to:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git remote -v
+origin  git://github.com/schacon/ticgit.git (fetch)
+origin  git://github.com/schacon/ticgit.git (push)
+</code></pre>  </div></div> <p>If you have more than one remote, the command lists them all. For example, my Grit repository looks something like this.</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ cd grit
+$ git remote -v
+bakkdoor  git://github.com/bakkdoor/grit.git
+cho45     git://github.com/cho45/grit.git
+defunkt   git://github.com/defunkt/grit.git
+koke      git://github.com/koke/grit.git
+origin    git@github.com:mojombo/grit.git
+</code></pre>  </div></div> <p>This means I can pull contributions from any of these users pretty easily. But notice that only the origin remote is an SSH URL, so it's the only one I can push to (we'll cover why this is in <em>Chapter 4</em>).</p> <h3 id="adding-remote-repositories">Adding Remote Repositories</h3> <p>I've mentioned and given some demonstrations of adding remote repositories in previous sections, but here is how to do it explicitly. To add a new remote Git repository as a shortname you can reference easily, run <code class="language-plaintext highlighter-rouge notranslate">git remote add [shortname] [url]</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git remote
+origin
+$ git remote add pb git://github.com/paulboone/ticgit.git
+$ git remote -v
+origin	git://github.com/schacon/ticgit.git
+pb	git://github.com/paulboone/ticgit.git
+</code></pre>  </div></div> <p>Now you can use the string <code class="language-plaintext highlighter-rouge notranslate">pb</code> on the command line in lieu of the whole URL. For example, if you want to fetch all the information that Paul has but that you don't yet have in your repository, you can run <code class="language-plaintext highlighter-rouge notranslate">git fetch pb</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git fetch pb
+remote: Counting objects: 58, done.
+remote: Compressing objects: 100% (41/41), done.
+remote: Total 44 (delta 24), reused 1 (delta 0)
+Unpacking objects: 100% (44/44), done.
+From git://github.com/paulboone/ticgit
+ * [new branch]      master     -&gt; pb/master
+ * [new branch]      ticgit     -&gt; pb/ticgit
+</code></pre>  </div></div> <p>Paul's master branch is accessible locally as <code class="language-plaintext highlighter-rouge notranslate">pb/master</code> — you can merge it into one of your branches, or you can check out a local branch at that point if you want to inspect it.</p> <h3 id="fetching-and-pulling-from-your-remotes">Fetching and Pulling from Your Remotes</h3> <p>As you just saw, to get data from your remote projects, you can run:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git fetch [remote-name]
+</code></pre>  </div></div> <p>The command goes out to that remote project and pulls down all the data from that remote project that you don't have yet. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time. (We'll go over what branches are and how to use them in much more detail in <em>Chapter 3</em>.)</p> <p>If you clone a repository, the command automatically adds that remote repository under the name <em>origin</em>. So, <code class="language-plaintext highlighter-rouge notranslate">git fetch origin</code> fetches any new work that has been pushed to that server since you cloned (or last fetched from) it. It's important to note that the <code class="language-plaintext highlighter-rouge notranslate">fetch</code> command pulls the data to your local repository — it doesn't automatically merge it with any of your work or modify what you're currently working on. You have to merge it manually into your work when you're ready.</p> <p>If you have a branch set up to track a remote branch (see the next section and <em>Chapter 3</em> for more information), you can use the <code class="language-plaintext highlighter-rouge notranslate">git pull</code> command to automatically fetch and then merge a remote branch into your current branch. This may be an easier or more comfortable workflow for you; and by default, the <code class="language-plaintext highlighter-rouge notranslate">git clone</code> command automatically sets up your local master branch to track the remote master branch on the server you cloned from (assuming the remote has a master branch). Running <code class="language-plaintext highlighter-rouge notranslate">git pull</code> generally fetches data from the server you originally cloned from and automatically tries to merge it into the code you're currently working on.</p> <h3 id="pushing-to-your-remotes">Pushing to Your Remotes</h3> <p>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple: <code class="language-plaintext highlighter-rouge notranslate">git push [remote-name] [branch-name]</code>. If you want to push your master branch to your <code class="language-plaintext highlighter-rouge notranslate">origin</code> server (again, cloning generally sets up both of those names for you automatically), then you can run this to push your work back up to the server:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git push origin master
+</code></pre>  </div></div> <p>This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You'll have to pull down their work first and incorporate it into yours before you'll be allowed to push. See <em>Chapter 3</em> for more detailed information on how to push to remote servers.</p> <h3 id="inspecting-a-remote">Inspecting a Remote</h3> <p>If you want to see more information about a particular remote, you can use the <code class="language-plaintext highlighter-rouge notranslate">git remote show [remote-name]</code> command. If you run this command with a particular shortname, such as <code class="language-plaintext highlighter-rouge notranslate">origin</code>, you get something like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git remote show origin
+* remote origin
+  URL: git://github.com/schacon/ticgit.git
+  Remote branch merged with 'git pull' while on branch master
+    master
+  Tracked remote branches
+    master
+    ticgit
+</code></pre>  </div></div> <p>It lists the URL for the remote repository as well as the tracking branch information. The command helpfully tells you that if you're on the master branch and you run <code class="language-plaintext highlighter-rouge notranslate">git pull</code>, it will automatically merge in the master branch on the remote after it fetches all the remote references. It also lists all the remote references it has pulled down.</p> <p>That is a simple example you're likely to encounter. When you're using Git more heavily, however, you may see much more information from <code class="language-plaintext highlighter-rouge notranslate">git remote show</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git remote show origin
+* remote origin
+  URL: git@github.com:defunkt/github.git
+  Remote branch merged with 'git pull' while on branch issues
+    issues
+  Remote branch merged with 'git pull' while on branch master
+    master
+  New remote branches (next fetch will store in remotes/origin)
+    caching
+  Stale tracking branches (use 'git remote prune')
+    libwalker
+    walker2
+  Tracked remote branches
+    acl
+    apiv2
+    dashboard2
+    issues
+    master
+    postgres
+  Local branch pushed with 'git push'
+    master:master
+</code></pre>  </div></div> <p>This command shows which branch is automatically pushed when you run <code class="language-plaintext highlighter-rouge notranslate">git push</code> on certain branches. It also shows you which remote branches on the server you don't yet have, which remote branches you have that have been removed from the server, and multiple branches that are automatically merged when you run <code class="language-plaintext highlighter-rouge notranslate">git pull</code>.</p> <h3 id="removing-and-renaming-remotes">Removing and Renaming Remotes</h3> <p>If you want to rename a reference, in newer versions of Git you can run <code class="language-plaintext highlighter-rouge notranslate">git remote rename</code> to change a remote's shortname. For instance, if you want to rename <code class="language-plaintext highlighter-rouge notranslate">pb</code> to <code class="language-plaintext highlighter-rouge notranslate">paul</code>, you can do so with <code class="language-plaintext highlighter-rouge notranslate">git remote rename</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git remote rename pb paul
+$ git remote
+origin
+paul
+</code></pre>  </div></div> <p>It's worth mentioning that this changes your remote branch names, too. What used to be referenced at <code class="language-plaintext highlighter-rouge notranslate">pb/master</code> is now at <code class="language-plaintext highlighter-rouge notranslate">paul/master</code>.</p> <p>If you want to remove a reference for some reason — you've moved the server or are no longer using a particular mirror, or perhaps a contributor isn't contributing anymore — you can use <code class="language-plaintext highlighter-rouge notranslate">git remote rm</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git remote rm paul
+$ git remote
+origin
+</code></pre>  </div></div> <h2 id="tagging">Tagging</h2> <p>Like most VCSs, Git has the ability to tag specific points in history as being important. Generally, people use this functionality to mark release points (<code class="language-plaintext highlighter-rouge notranslate">v1.0</code>, and so on). In this section, you'll learn how to list the available tags, how to create new tags, and what the different types of tags are.</p> <h3 id="listing-your-tags">Listing Your Tags</h3> <p>Listing the available tags in Git is straightforward. Just type <code class="language-plaintext highlighter-rouge notranslate">git tag</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag
+v0.1
+v1.3
+</code></pre>  </div></div> <p>This command lists the tags in alphabetical order; the order in which they appear has no real importance.</p> <p>You can also search for tags with a particular pattern. The Git source repo, for instance, contains more than 240 tags. If you're only interested in looking at the 1.4.2 series, you can run this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag -l 'v1.4.2.*'
+v1.4.2.1
+v1.4.2.2
+v1.4.2.3
+v1.4.2.4
+</code></pre>  </div></div> <h3 id="creating-tags">Creating Tags</h3> <p>Git uses two main types of tags: lightweight and annotated. A lightweight tag is very much like a branch that doesn't change — it's just a pointer to a specific commit. Annotated tags, however, are stored as full objects in the Git database. They're checksummed; contain the tagger name, e-mail, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG). It's generally recommended that you create annotated tags so you can have all this information; but if you want a temporary tag or for some reason don't want to keep the other information, lightweight tags are available too.</p> <h3 id="annotated-tags">Annotated Tags</h3> <p>Creating an annotated tag in Git is simple. The easiest way is to specify <code class="language-plaintext highlighter-rouge notranslate">-a</code> when you run the <code class="language-plaintext highlighter-rouge notranslate">tag</code> command:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag -a v1.4 -m 'my version 1.4'
+$ git tag
+v0.1
+v1.3
+v1.4
+</code></pre>  </div></div> <p>The <code class="language-plaintext highlighter-rouge notranslate">-m</code> specifies a tagging message, which is stored with the tag. If you don't specify a message for an annotated tag, Git launches your editor so you can type it in.</p> <p>You can see the tag data along with the commit that was tagged by using the <code class="language-plaintext highlighter-rouge notranslate">git show</code> command:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git show v1.4
+tag v1.4
+Tagger: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Feb 9 14:45:11 2009 -0800
+
+my version 1.4
+
+commit 15027957951b64cf874c3557a0f3547bd83b3ff6
+Merge: 4a447f7... a6b4c97...
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sun Feb 8 19:02:46 2009 -0800
+
+    Merge branch 'experiment'
+</code></pre>  </div></div> <p>That shows the tagger information, the date the commit was tagged, and the annotation message before showing the commit information.</p> <h3 id="signed-tags">Signed Tags</h3> <p>You can also sign your tags with GPG, assuming you have a private key. All you have to do is use <code class="language-plaintext highlighter-rouge notranslate">-s</code> instead of <code class="language-plaintext highlighter-rouge notranslate">-a</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag -s v1.5 -m 'my signed 1.5 tag'
+You need a passphrase to unlock the secret key for
+user: "Scott Chacon &lt;schacon@gee-mail.com&gt;"
+1024-bit DSA key, ID F721C45A, created 2009-02-09
+</code></pre>  </div></div> <p>If you run <code class="language-plaintext highlighter-rouge notranslate">git show</code> on that tag, you can see your GPG signature attached to it:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git show v1.5
+tag v1.5
+Tagger: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Feb 9 15:22:20 2009 -0800
+
+my signed 1.5 tag
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.8 (Darwin)
+
+iEYEABECAAYFAkmQurIACgkQON3DxfchxFr5cACeIMN+ZxLKggJQf0QYiQBwgySN
+Ki0An2JeAVUCAiJ7Ox6ZEtK+NvZAj82/
+=WryJ
+-----END PGP SIGNATURE-----
+commit 15027957951b64cf874c3557a0f3547bd83b3ff6
+Merge: 4a447f7... a6b4c97...
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sun Feb 8 19:02:46 2009 -0800
+
+    Merge branch 'experiment'
+</code></pre>  </div></div> <p>A bit later, you'll learn how to verify signed tags.</p> <h3 id="lightweight-tags">Lightweight Tags</h3> <p>Another way to tag commits is with a lightweight tag. This is basically the commit checksum stored in a file — no other information is kept. To create a lightweight tag, don't supply the <code class="language-plaintext highlighter-rouge notranslate">-a</code>, <code class="language-plaintext highlighter-rouge notranslate">-s</code>, or <code class="language-plaintext highlighter-rouge notranslate">-m</code> option:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag v1.4-lw
+$ git tag
+v0.1
+v1.3
+v1.4
+v1.4-lw
+v1.5
+</code></pre>  </div></div> <p>This time, if you run <code class="language-plaintext highlighter-rouge notranslate">git show</code> on the tag, you don't see the extra tag information. The command just shows the commit:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git show v1.4-lw
+commit 15027957951b64cf874c3557a0f3547bd83b3ff6
+Merge: 4a447f7... a6b4c97...
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sun Feb 8 19:02:46 2009 -0800
+
+    Merge branch 'experiment'
+</code></pre>  </div></div> <h3 id="verifying-tags">Verifying Tags</h3> <p>To verify a signed tag, you use <code class="language-plaintext highlighter-rouge notranslate">git tag -v [tag-name]</code>. This command uses GPG to verify the signature. You need the signer's public key in your keyring for this to work properly:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag -v v1.4.2.1
+object 883653babd8ee7ea23e6a5c392bb739348b1eb61
+type commit
+tag v1.4.2.1
+tagger Junio C Hamano &lt;junkio@cox.net&gt; 1158138501 -0700
+
+GIT 1.4.2.1
+
+Minor fixes since 1.4.2, including git-mv and git-http with alternates.
+gpg: Signature made Wed Sep 13 02:08:25 2006 PDT using DSA key ID F3119B9A
+gpg: Good signature from "Junio C Hamano &lt;junkio@cox.net&gt;"
+gpg:                 aka "[jpeg image of size 1513]"
+Primary key fingerprint: 3565 2A26 2040 E066 C9A7  4A7D C0C6 D9A4 F311 9B9A
+</code></pre>  </div></div> <p>If you don't have the signer's public key, you get something like this instead:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>gpg: Signature made Wed Sep 13 02:08:25 2006 PDT using DSA key ID F3119B9A
+gpg: Can't check signature: public key not found
+error: could not verify the tag 'v1.4.2.1'
+</code></pre>  </div></div> <h3 id="tagging-later">Tagging Later</h3> <p>You can also tag commits after you've moved past them. Suppose your commit history looks like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --pretty=oneline
+15027957951b64cf874c3557a0f3547bd83b3ff6 Merge branch 'experiment'
+a6b4c97498bd301d84096da251c98a07c7723e65 beginning write support
+0d52aaab4479697da7686c15f77a3d64d9165190 one more thing
+6d52a271eda8725415634dd79daabbc4d9b6008e Merge branch 'experiment'
+0b7434d86859cc7b8c3d5e1dddfed66ff742fcbc added a commit function
+4682c3261057305bdd616e23b64b0857d832627b added a todo file
+166ae0c4d3f420721acbb115cc33848dfcc2121a started write support
+9fceb02d0ae598e95dc970b74767f19372d61af8 updated rakefile
+964f16d36dfccde844893cac5b347e7b3d44abbc commit the todo
+8a5cbc430f1a9c3d00faaeffd07798508422908a updated readme
+</code></pre>  </div></div> <p>Now, suppose you forgot to tag the project at <code class="language-plaintext highlighter-rouge notranslate">v1.2</code>, which was at the "updated rakefile" commit. You can add it after the fact. To tag that commit, you specify the commit checksum (or part of it) at the end of the command:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag -a v1.2 -m 'version 1.2' 9fceb02
+</code></pre>  </div></div> <p>You can see that you've tagged the commit:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git tag
+v0.1
+v1.2
+v1.3
+v1.4
+v1.4-lw
+v1.5
+
+$ git show v1.2
+tag v1.2
+Tagger: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Feb 9 15:32:16 2009 -0800
+
+version 1.2
+commit 9fceb02d0ae598e95dc970b74767f19372d61af8
+Author: Magnus Chacon &lt;mchacon@gee-mail.com&gt;
+Date:   Sun Apr 27 20:43:35 2008 -0700
+
+    updated rakefile
+...
+</code></pre>  </div></div> <h3 id="sharing-tags">Sharing Tags</h3> <p>By default, the <code class="language-plaintext highlighter-rouge notranslate">git push</code> command doesn't transfer tags to remote servers. You will have to explicitly push tags to a shared server after you have created them. This process is just like sharing remote branches — you can run <code class="language-plaintext highlighter-rouge notranslate">git push origin [tagname]</code>.</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git push origin v1.5
+Counting objects: 50, done.
+Compressing objects: 100% (38/38), done.
+Writing objects: 100% (44/44), 4.56 KiB, done.
+Total 44 (delta 18), reused 8 (delta 1)
+To git@github.com:schacon/simplegit.git
+* [new tag]         v1.5 -&gt; v1.5
+</code></pre>  </div></div> <p>If you have a lot of tags that you want to push up at once, you can also use the <code class="language-plaintext highlighter-rouge notranslate">--tags</code> option to the <code class="language-plaintext highlighter-rouge notranslate">git push</code> command. This will transfer all of your tags to the remote server that are not already there.</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git push origin --tags
+Counting objects: 50, done.
+Compressing objects: 100% (38/38), done.
+Writing objects: 100% (44/44), 4.56 KiB, done.
+Total 44 (delta 18), reused 8 (delta 1)
+To git@github.com:schacon/simplegit.git
+ * [new tag]         v0.1 -&gt; v0.1
+ * [new tag]         v1.2 -&gt; v1.2
+ * [new tag]         v1.4 -&gt; v1.4
+ * [new tag]         v1.4-lw -&gt; v1.4-lw
+ * [new tag]         v1.5 -&gt; v1.5
+</code></pre>  </div></div> <p>Now, when someone else clones or pulls from your repository, they will get all your tags as well.</p> <h2 id="tips-and-tricks">Tips and Tricks</h2> <p>Before we finish this chapter on basic Git, a few little tips and tricks may make your Git experience a bit simpler, easier, or more familiar. Many people use Git without using any of these tips, and we won't refer to them or assume you've used them later in the book; but you should probably know how to do them.</p> <h3 id="auto-completion">Auto-Completion</h3> <p>If you use the Bash shell, Git comes with a nice auto-completion script you can enable. Download it directly from the Git source code at https://github.com/git/git/blob/master/contrib/completion/git-completion.bash . Copy this file to your home directory, and add this to your <code class="language-plaintext highlighter-rouge notranslate">.bashrc</code> file:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>source ~/git-completion.bash
+</code></pre>  </div></div> <p>If you want to set up Git to automatically have Bash shell completion for all users, copy this script to the <code class="language-plaintext highlighter-rouge notranslate">/opt/local/etc/bash_completion.d</code> directory on Mac systems or to the <code class="language-plaintext highlighter-rouge notranslate">/etc/bash_completion.d/</code> directory on Linux systems. This is a directory of scripts that Bash will automatically load to provide shell completions.</p> <p>If you're using Windows with Git Bash, which is the default when installing Git on Windows with msysGit, auto-completion should be preconfigured.</p> <p>Press the Tab key when you're writing a Git command, and it should return a set of suggestions for you to pick from:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git co&lt;tab&gt;&lt;tab&gt;
+commit config
+</code></pre>  </div></div> <p>In this case, typing <code class="language-plaintext highlighter-rouge notranslate">git co</code> and then pressing the Tab key twice suggests commit and config. Adding <code class="language-plaintext highlighter-rouge notranslate">m&lt;tab&gt;</code> completes <code class="language-plaintext highlighter-rouge notranslate">git commit</code> automatically.</p> <p>This also works with options, which is probably more useful. For instance, if you're running a <code class="language-plaintext highlighter-rouge notranslate">git log</code> command and can't remember one of the options, you can start typing it and press Tab to see what matches:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git log --s&lt;tab&gt;&lt;tab&gt;
+--shortstat               --sparse
+--simplify-by-decoration  --src-prefix=
+--simplify-merges         --stat
+--since=                  --summary
+</code></pre>  </div></div> <p>That's a pretty nice trick and may save you some time and documentation reading.</p> <h3 id="git-aliases">Git Aliases</h3> <p>Git doesn't infer your command if you type it in partially. If you don't want to type the entire text of each of the Git commands, you can easily set up an alias for each command using <code class="language-plaintext highlighter-rouge notranslate">git config</code>. Here are a couple of examples you may want to set up:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+</code></pre>  </div></div> <p>This means that, for example, instead of typing <code class="language-plaintext highlighter-rouge notranslate">git commit</code>, you just need to type <code class="language-plaintext highlighter-rouge notranslate">git ci</code>. As you go on using Git, you'll probably use other commands frequently as well; in this case, don't hesitate to create new aliases.</p> <p>This technique can also be very useful in creating commands that you think should exist. For example, to correct the usability problem you encountered with unstaging a file, you can add your own unstage alias to Git:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git config --global alias.unstage 'reset HEAD --'
+</code></pre>  </div></div> <p>This makes the following two commands equivalent:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git unstage fileA
+$ git reset HEAD fileA
+</code></pre>  </div></div> <p>This seems a bit clearer. It's also common to add a <code class="language-plaintext highlighter-rouge notranslate">last</code> command, like this:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git config --global alias.last 'log -1 HEAD'
+</code></pre>  </div></div> <p>This way, you can see the last commit easily:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git last
+commit 66938dae3329c7aebe598c2246a8e6af90d04646
+Author: Josh Goebel &lt;dreamer3@example.com&gt;
+Date:   Tue Aug 26 19:48:51 2008 +0800
+
+    test for current head
+
+    Signed-off-by: Scott Chacon &lt;schacon@example.com&gt;
+</code></pre>  </div></div> <p>As you can tell, Git simply replaces the new command with whatever you alias it to. However, maybe you want to run an external command, rather than a Git subcommand. In that case, you start the command with a <code class="language-plaintext highlighter-rouge notranslate">!</code> character. This is useful if you write your own tools that work with a Git repository. We can demonstrate by aliasing <code class="language-plaintext highlighter-rouge notranslate">git visual</code> to run <code class="language-plaintext highlighter-rouge notranslate">gitk</code>:</p> <div class="language-plaintext highlighter-rouge notranslate"><div class="highlight"><pre class="highlight"><code>$ git config --global alias.visual '!gitk'
+</code></pre>  </div></div> <h2 id="summary">Summary</h2> <p>At this point, you can do all the basic local Git operations — creating or cloning a repository, making changes, staging and committing those changes, and viewing the history of all the changes the repository has been through. Next, we'll cover Git's killer feature: its branching model.</p> </div> </div> <div class="navigation-bottom d-flex flex-justify-between py-3" role="navigation" aria-label="footer navigation"> <div class="prev"><a href="/progit-book/01-introduction.html" class="btn" title="Getting Started #" accesskey="p" rel="prev"> <i class="fa fa-arrow-circle-left"></i> Previous </a></div> <div class="next"><a href="/progit-book/03-git-branching.html" class="btn" title="Git Branching #" accesskey="n" rel="next"> Next <i class="fa fa-arrow-circle-right"></i> </a></div> </div><hr> <div class="copyright text-center text-gray" role="contentinfo"> <a class="text-gray" href="https://www.eq19.com/identition/span12/#disclaimer"> <i class="fa fa-copyright"></i> <span class="time">2015-2024,</span> </a> <a class="text-gray" href="https://github.com/eq19" rel="noreferrer" target="_blank"> eQuantum, </a> Prime Spin <a class="text-gray" href="https://github.com/JunctionTerms/progit-book/commit/5633879a29af8bd1d6c0f4b1a149552dfc8b37c3" title="5633879a29af8bd1d6c0f4b1a149552dfc8b37c3" rel="noreferrer" target="_blank">[5,4]</a> <br> <div class="generator"> Built with <a href="https://pages.github.com" rel="noreferrer" target="_blank" title="github-pages v209">GitHub Pages</a> using a <a href="https://github.com/rundocs/jekyll-rtd-theme" rel="noreferrer" target="_blank" title="jekyll-rtd-theme v2.0.10">theme</a> provided by <a href="https://github.com/rundocs" rel="noreferrer" target="_blank">RunDocs</a>. </div> </div> </div> </div> <div class="addons-wrap d-flex flex-column overflow-y-auto"> <div class="status d-flex flex-justify-between p-2"> <div class="title p-1"> <i class="fa fa-book"></i> eQuantum </div> <div class="branch p-1"> <span class="name"> profiles </span> <i class="fa fa-caret-down"></i> </div> </div> <div class="addons d-flex flex-column height-full p-2 d-none"> <dl> <dt>GitHub</dt> <dd> <a href="https://eq19.com/" title="Homepage"> <i class="fa fa-home"></i> Homepage </a> </dd> <dd> <a href="https://github.com/eq19/eq19.github.io" title="Repository" target="_blank"> <i class="fa fa-github"></i> Repository </a> </dd> <dd> <a href="https://gist.github.com/eq19" title="Gist" target="_blank"> <i class="fa fa-download"></i> Gist </a> </dd> </dl> <hr> <div class="license f6 pb-2"> This <a href="/progit-book/" title="eQuantum" target="_blank">Software</a> is under the terms of <a href="https://github.com/JunctionTerms/progit-book" target="_blank">The Unlicense</a>. </div> </div> </div> <script src="https://cdn.jsdelivr.net/gh/rundocs/jekyll-rtd-theme@2.0.10/assets/js/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/gh/rundocs/jekyll-rtd-theme@2.0.10/assets/js/theme.min.js"></script> </body> </html>

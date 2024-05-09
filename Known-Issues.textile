@@ -1,0 +1,46 @@
+h2. Helvetica is missing
+
+This is the "@! I can't find file `Helvetica'.@" error, mainly due to the fact Helvetica is a proprietary font and thus potentially not installed on your OS.
+
+However, you can select the name of the default font you do want to use by updating the @latex/config.yml@ file and changing:
+* the @default@ entry to change the font for all books
+* changing/adding a @font@ entry in your language of choice
+
+For example:
+
+<pre>
+<code>
+fr:
+  font: Verdana
+</code></pre> 
+
+h2. For Ubuntu,The solution is:
+
+Edit latex/config.yml,used fonts: *Ubuntu* for normal text and *DejaVu Sans Mono* for monospace
+For example:
+<pre><code>
+default:
+  font: Ubuntu
+  bold: "{* Bold}"
+  mono: DejaVu Sans Mono
+  prechap: "Chapter "
+  postchap: ""
+  presect: "Section "
+  postsect: ""
+  dql: "“"
+  dqr: "”"
+  con: "Contents"
+  fig: "Figure "
+  tab: "Table "
+  indent: "\\qquad"
+  thanks: "This is the PDF file for the Pro Git book contents. It is licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. I hope you enjoy it, I hope it helps you learn Git, and I hope you'll support Apress and me by purchasing a print copy of the book at Amazon: \\url{http://tinyurl.com/amazonprogit}"</code></pre>
+
+h2. For Debian, the solution is:
+
+Edit latex/config.yml,used fonts: *Nimbus Sans L* (@apt-get install tex-gyre@) for normal text and *DejaVu Sans Mono* for monospace
+For example:
+<pre><code>
+default:
+  font: Nimbus Sans L
+  bold: "{* Bold}" 
+  mono: DejaVu Sans Mono</code></pre>
